@@ -6,7 +6,7 @@ package myinterface
 /**
  * Created by sunnyDay on 2019/7/12 14:13
  *kotlin中的关键字：
- * 1、 open public private protected
+ * 1、 open public private protected（java默认为包私有kotlin中没有，kotlin默认为public）
  * 2、 java类方法 默认是开放的，子类默认可以继承重写父类，或者父类方法，kotlin的默认是final的
  * 3、final和open关键字的功能相反（open标注的就是可继承、可重写）
  * 4、子类中重写基类的方法或者成员后，子类内新的方法或者成员默认权限是 open 我们可以通过关键字修改
