@@ -1,5 +1,30 @@
-自定义 getter setter
+###### 1、 get set
+>1、kotlin为我们自动创建 getter 、setter方法。
+>2、val类型的变量 为可读变量 我们能访问 getter方法不能访问setter方法
+>3、var类型的变量 getter setter方法我们都能访问
 
+###### 2、栗子
+```java
+/**
+ * Create by SunnyDay on 2019/07/12
+ */
+class LengthCount {
+    var counter = 0
+   // private set
+}
+
+
+fun main(args: Array<String>){
+    val lengthCount = LengthCount()
+    lengthCount.counter   // 内部就是调用的get方法（可以通过java文件调用我们的LengthCount测试）
+    lengthCount.counter =3 // 内部就是调用的set方法 
+    
+}
+
+```
+
+
+###### 3、自定义栗子
 ```java
 
 package myinterface
