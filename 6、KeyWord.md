@@ -11,7 +11,8 @@ package myinterface
  * 3、final和open关键字的功能相反（open标注的就是可继承、可重写）
  * 4、子类中重写基类的方法或者成员后，子类内新的方法或者成员默认权限是 open 我们可以通过关键字修改
  *
- * 注意：接口和接口中的方法默认是  开放的（open）继承后也是open
+ * 注意：1、接口和接口中的方法默认是  开放的（open）继承后也是open
+ *       2、抽象类同接口
  */
 class KeyWord : Button() { // 普通类默认public final 类型,
 
