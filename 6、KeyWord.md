@@ -12,7 +12,8 @@ package myinterface
  * 4、子类中重写基类的方法或者成员后，子类内新的方法或者成员默认权限是 open 我们可以通过关键字修改
  *
  * 注意：1、接口和接口中的方法默认是  开放的（open）继承后也是open
- *       2、抽象类同接口
+ *       2、抽象类同接口（抽象类，和抽象方法 默认 public open）
+ *       3、抽象类中的非抽象函数并不是open  默认final
  */
 class KeyWord : Button() { // 普通类默认public final 类型,
 
