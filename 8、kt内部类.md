@@ -57,6 +57,6 @@ class Outer{
 
 > 内部类回顾：
 >
-> 1、[深入理解java嵌套类和内部类]{<https://blog.csdn.net/hguisu/article/details/7270086>}
+> 1、[深入理解java嵌套类和内部类](https://blog.csdn.net/hguisu/article/details/7270086)
 >
-> 2、[[Java中的嵌套类和内部类](https://www.cnblogs.com/littlepanpc/p/3778472.html)]{<https://www.cnblogs.com/littlepanpc/p/3778472.html>}
+> 2、[Java中的嵌套类和内部类](https://www.cnblogs.com/littlepanpc/p/3778472.html)
