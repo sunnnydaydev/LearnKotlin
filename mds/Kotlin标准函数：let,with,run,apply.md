@@ -9,7 +9,7 @@
 > 最近在开发中经常见到这些函数的使用，发现使用这些标准函数后代码可以更加精简，真的非常nice本着查漏补缺的想法这里就总结下。本节主要会做如下几件事：
 
 - 基础：几个标准函数的学习总结。
-- 提升：最简单的let函数设计探究。
+- 提升：挑取一个函数设计探究。
 
 # 几个高频标准函数
 
@@ -250,10 +250,58 @@ with的栗子我们改写成run：
 |   方法使用   |                         对象调用                          |                          类调用                          | 对象调用                                                 | 对象调用                                    |
 |   方法参数   |                       lambda表达式                        |          参数1，任意对象。参数2，Lambda表达式。          | lambda表达式                                             | lambda表达式                                |
 | lambda表达式 | lambda表达式有一个参数，参数类型为let对象调用者所属类型。 |          lambda表达式中持有，对象的上下文环境。          | lambda表达式中持有，对象的上下文环境。                   | lambda表达式中持有，对象的上下文环境。      |
-|  方法返回值  |                            无                             | lambda表达式的最后一行代码。（返回值类型由这行代码决定） | lambda表达式的最后一行代码。（返回值类型由这行代码决定） | apply对象调用者所属类型。（返回值类型固定） |
+|  方法返回值  |                        无（Unit）                         | lambda表达式的最后一行代码。（返回值类型由这行代码决定） | lambda表达式的最后一行代码。（返回值类型由这行代码决定） | apply对象调用者所属类型。（返回值类型固定） |
 
 
 
-# 最简单的let函数设计探究
+# 挑取一个函数设计探究
 
-待续~
+
+
+###### 1、run 源码
+
+```java
+@kotlin.internal.InlineOnly
+public inline fun <T, R> T.run(block: T.() -> R): R {
+    contract {
+        callsInPlace(block, InvocationKind.EXACTLY_ONCE)
+    }
+    return block()
+}
+```
+
+> 设计十分简单：
+>
+> 1、inline，定义函数为内联函数这里可以不用管，不影响run业务。
+>
+> 2、contract，kt1.3新增新特性 契约。不影响run业务。
+>
+> 3、看下，首先定义了泛型参数T，R。run方法定义为T的扩展函数。run方法返回值为R
+>
+> 4、再看下run方法参数，这里接受函数类型的参数，函数类型为T.() T的扩展函数类型，扩展函数类型返回值为R
+>
+> 5、再看下run返回值为block函数， block 本身就是 T.() 扩展函数，且扩展函数返回值也是R。所以block（）返回值为R
+
+###### 2、自定义
+
+```java
+/**
+ * Create by SunnyDay on 10:29 2022/01/03
+ */
+
+// 
+fun <T,R>T.customLet(block: T.()->R):R{
+    return block()
+}
+
+fun main(){
+    // 测试自定义
+    val str = "name"
+
+    str.customLet {
+        println(this)
+    }
+}
+```
+
+> 总结：emmmm, 和源码一样啊，，，，，，没关系功能几乎实现了，契约那一块还不熟悉以后再查漏补缺下~
