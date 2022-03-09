@@ -2,7 +2,7 @@
 
 学过高阶函数后发现还没怎么在项目中使用过，刚好最近碰到了这里小结一下~
 
-###### 场景1：实现类似接口回调的功能
+###### 1、替换接口回调的功能
 
 接口的回调在开发中屡见不鲜，接下来就结合自定义view模拟回顾下~ 
 
@@ -214,8 +214,49 @@ onSelect.invoke() // 执行2
 var onSelect: (StateInfo,Int) -> Unit = {it:StateInfo,a:Int->{}}
 ```
 
-###### 场景2：sp 优化
+（4）高阶函数与Lambda的返回值类型
 
-###### 场景3：ContentValue
+ Lambda表达式的最后一行表达式的值就是Lambda返回值.所以当高阶函数定义返回值类型时，Lambda表达式需要在最后一样给出返回值 如：
+
+```java
+ var onSelect: (StateInfo) -> Boolean = {false}
+```
+
+###### 2、Log打印栗子
+
+```java
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        // test
+        logD {
+            "test1"
+        }
+        logD("MyTag") {
+            "test2"
+        }
+
+
+    }
+    // logD Tag 定死
+    private fun logD(msg:()->String){
+       Log.i("MainActivity", msg())
+    }
+    // logD Tag 自定义
+    private fun logD(tag:String,msg:()->String){
+        Log.i(tag, msg())
+    }
+}
+```
+
+
+
+# 收获
+
+对高阶函数、Lambda、扩展函数有了新的认识~   
+
+看到网上好多高阶函数实践的，如sp 简化、ontentValue简化，还有结合扩展函数应用的，可以借鉴研究下~
 
 [高阶函数&Lambda回顾可参考这里](https://github.com/sunnnydaydev/LearnKotlin/blob/master/mds/18、高阶函数.md)
