@@ -2,7 +2,7 @@
 
 ###### 1、语法
 
-```java
+```kotlin
 let{
     //todo
 }
@@ -18,7 +18,7 @@ let{
 >
 > ps:详情参考下面栗子
 
-```java
+```kotlin
 /**
  * Created by sunnyDay on 2019/8/19 16:31
  *
@@ -47,7 +47,7 @@ class Stu {
 
 ######  1、栗子
 
-```java
+```kotlin
 fun main() {
 
     val xiaoHua = Stu()
@@ -93,7 +93,7 @@ class Stu {
 >
 > 2、isNullOrBlank()：字符串判空，或者只包含空的字符
 
-```java
+```kotlin
 
 /**
  * Created by sunnyDay on 2019/8/19 16:31
@@ -120,7 +120,7 @@ fun test(name:String){
 >
 > 2、Any代表任何类型
 
-```java
+```kotlin
 fun <T>test(t:T){  // t默认为 Any？类型，也就是任意可空类型 
    //使用之前判空处理
     if (t!=null){
