@@ -1,12 +1,14 @@
-# kotlin 
+# kotlin
 
->Kotlin学习,文章总结参看上文件夹 [mds](https://github.com/sunnnydaydev/LearnKotlin/tree/master/mds)
->
->参考资料：
->
-> < 第一行代码 Android 第三版.郭霖 >轻松上手很nice
-> 
-> [Kotlin语言中文站](https://www.kotlincn.net/docs/reference/)
+# 基础
+
+[入门了解](./mds/1、入门了解.md)
+
+
+# 参考
+
+[第一行代码:Android第三版](https://weread.qq.com/web/reader/73532150723f022f73516a6kecc32f3013eccbc87e4b62e)
+[Kotlin官方文档](https://www.kotlincn.net/docs/reference/)
 
 
 
