@@ -4,7 +4,7 @@
 
 首先定义个接口
 
-```java
+```kotlin
 /**
  * Created by SunnyDay on 2022/3/17 17:31:54
  */
@@ -15,7 +15,7 @@ interface DoWork {
 
 工人
 
-```java
+```kotlin
 /**
  * Created by SunnyDay on 2022/3/17 17:33:42
  * 工人
@@ -29,7 +29,7 @@ class Worker:DoWork {
 
 老板
 
-```java
+```kotlin
 /**
  * Created by SunnyDay on 2022/3/17 17:32:46
  * 老板
@@ -43,7 +43,7 @@ class Boss(private var worker: DoWork) : DoWork {
 
 测试类
 
-```java
+```kotlin
         val boss = Boss(Worker())
         boss.work("盖房子")
         boss.work("码头搬货物")
@@ -79,7 +79,7 @@ class Boss(private var worker: DoWork) : DoWork {
 
 还是上述委托的栗子，我们只需简单修改下Boss类：
 
-```java
+```kotlin
 class Boss(worker: DoWork) : DoWork by worker{
  // 很好理解：
  // 1、使用关键字by代表委托
@@ -89,7 +89,7 @@ class Boss(worker: DoWork) : DoWork by worker{
 
 测试下调用
 
-```java
+```kotlin
         val boss = Boss(Worker())
         boss.work("盖房子")
         boss.work("码头搬货物")
@@ -103,7 +103,7 @@ class Boss(worker: DoWork) : DoWork by worker{
 
 事实正是如此，通过上述的写法后Boss类已经不需要实现DoWork接口的方法了，编译器编译成字节码时会默认实现这个方法，并转发给被委托的对象。接下来我们不妨可以看下被编译后的字节码：
 
-```java
+```kotlin
 //实现了接口,by只是语法糖，到字节码阶段已经去除。
 public final class com/example/bitmapbasic/Boss implements com/example/bitmapbasic/DoWork{
   // 构造 
@@ -123,7 +123,7 @@ public final class com/example/bitmapbasic/Boss implements com/example/bitmapbas
 
 还是上述栗子，我们修改代码,让委托与方法重写都存在时：可见调用的是重写的方法，而不是委托类对象内的实现方法。
 
-```java
+```kotlin
 //添加委托
 class Boss(worker: DoWork) : DoWork by worker{
   // 重写方法
@@ -133,7 +133,7 @@ class Boss(worker: DoWork) : DoWork by worker{
 }
 ```
 
-```java
+```kotlin
         val boss = Boss(Worker())
         boss.work("盖房子")
         boss.work("码头搬货物")
@@ -147,7 +147,7 @@ class Boss(worker: DoWork) : DoWork by worker{
 
 遵循优先使用“委托类”的成员原则。如下：
 
-```java
+```kotlin
 interface DoWork {
     //定义接口成员变量
     val msg:String
@@ -157,7 +157,7 @@ interface DoWork {
 
 
 
-```java
+```kotlin
 //实现接口成员
 class Worker :DoWork {
     override val msg: String = "i am Worker"
@@ -175,7 +175,7 @@ class Boss(worker: DoWork) : DoWork by worker {
 }
 ```
 
-```java
+```kotlin
         //测试调用
         val boss = Boss(Worker())
         println(boss.msg)
@@ -188,7 +188,7 @@ class Boss(worker: DoWork) : DoWork by worker {
 
 ###### 1、自定义属性委托
 
-```java
+```kotlin
 语法：
 
 val/var <属性名>: <类型> by <表达式>
@@ -250,13 +250,13 @@ class Delegate {
 
 (1)延迟属性lazy() 函数
 
-```java
+```kotlin
 public actual fun <T> lazy(initializer: () -> T): Lazy<T> = SynchronizedLazyImpl(initializer)
 ```
 
 
 
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
     //只能定义val 类型，lazy无setValue
     private val name:String by lazy {
@@ -279,7 +279,7 @@ class MainActivity : AppCompatActivity() {
 
 若是我们想修改可以在lazy方法中传参即可：
 
-```java
+```kotlin
     private val name:String by lazy(LazyThreadSafetyMode.NONE) {
         "Tom"
     }
@@ -287,7 +287,7 @@ class MainActivity : AppCompatActivity() {
 
 (2) 可观察属性 Observable
 
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
     
     private var name:String by Delegates.observable("Tom"){
@@ -316,7 +316,7 @@ class MainActivity : AppCompatActivity() {
 
 kotlin提供委托，可以让我们在map中存储属性值。
 
-```java
+```kotlin
 /**
  * Created by Sunnyday on 2022/3/17 21:29:53
  */
@@ -327,7 +327,7 @@ class User(map: Map<String, Any>) {
 }
 ```
 
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -6,7 +6,7 @@
 
 接口的回调在开发中屡见不鲜，接下来就结合自定义view模拟回顾下~ 
 
-```java
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -38,7 +38,7 @@
 </androidx.appcompat.widget.LinearLayoutCompat>
 ```
 
-```java
+```kotlin
 /**
  * Created by SunnyDay on 2022/3/3 17:37:44
  */
@@ -88,7 +88,7 @@ class CustomView @JvmOverloads constructor(
 
 好了，一个自定义View就完工了，接下来看看接口回调的效果：
 
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
     companion object{
         const val TAG = "MainActivity"
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
 如上测试代码，使用接口回调很容易获取到按钮改变的状态。然而kotlin中来实现这个功能使用高阶函数同样能达到这个效果。接下来我们修改代码：
 
-```java
+```kotlin
 /**
  * Created by SunnyDay on 2022/3/3 17:37:44
  */
@@ -157,7 +157,7 @@ class CustomView @JvmOverloads constructor(
 
 同样的功能，高阶函数方式实现就完工了，看看测试效果：
 
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
     companion object {
         const val TAG = "MainActivity"
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
 
 （1）invoke方法执行的参数与高阶函数接受的参数类型是一致的。
 
-```java
+```kotlin
 //这里定义onSelect: (StateInfo)定义了一参数，那么方法执行时传递符合的参数即可。
 var onSelect: (StateInfo) -> Unit = {} //定义1
 ...
@@ -199,7 +199,7 @@ onSelect.invoke() // 执行2
 
 （2）高阶函数有一个参数时lambda可以不声明参数，lambda 参数默认为高阶函数那一个参数类型。
 
-```java
+```kotlin
  var onSelect: (StateInfo) -> Unit = {}//lambda 中参数默认StateInfo
  // 完整写法是这样的：
  var onSelect: (StateInfo) -> Unit = {it:StateInfo->单行表达式时}
@@ -209,7 +209,7 @@ onSelect.invoke() // 执行2
 
 （3）当高阶函数有多个参数时lambda 需要声明全部的参数。
 
-```java
+```kotlin
 //如 onSelect定义了两个参数，lambda要定义两个参数。   
 var onSelect: (StateInfo,Int) -> Unit = {it:StateInfo,a:Int->{}}
 ```
@@ -218,13 +218,13 @@ var onSelect: (StateInfo,Int) -> Unit = {it:StateInfo,a:Int->{}}
 
  Lambda表达式的最后一行表达式的值就是Lambda返回值.所以当高阶函数定义返回值类型时，Lambda表达式需要在最后一样给出返回值 如：
 
-```java
+```kotlin
  var onSelect: (StateInfo) -> Boolean = {false}
 ```
 
 ###### 2、Log打印栗子
 
-```java
+```kotlin
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

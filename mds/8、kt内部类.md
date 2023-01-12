@@ -1,6 +1,6 @@
 kt内部类
 
-```java
+```kotlin
 package InnerClass
 
 import java.io.Serializable
